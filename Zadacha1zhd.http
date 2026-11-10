@@ -1,0 +1,6 @@
+@Zadacha1zhd_HostAddress = http://localhost:5296
+
+GET {{Zadacha1zhd_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
