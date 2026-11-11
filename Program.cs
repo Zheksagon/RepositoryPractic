@@ -10,8 +10,6 @@ namespace Zadacha1zhd
 
             var app = builder.Build();
 
-            app.UseHttpsRedirection();
-
             app.MapGet("/", () => "Hello World!");
 
             app.Run();
