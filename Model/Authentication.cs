@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zadacha1zhd.Model
 {
-    public class Authentication
+    public class AuthenticationModel
     {
         public string LoginEmailPhoneNumber { get; set; } = string.Empty;
 
