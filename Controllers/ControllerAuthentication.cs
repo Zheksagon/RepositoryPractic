@@ -9,7 +9,7 @@ namespace Zadacha1zhd.Controllers
         [HttpGet]
         public IActionResult Authentication()
         {
-            return View("~/Views/authentication.cshtml");
+            return View("~/Views/WindowsAuthentication/WindowsRegistration/UserRegistration/main.cshtml");
         }
         
     }
