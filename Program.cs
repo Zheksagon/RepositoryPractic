@@ -22,9 +22,11 @@ namespace Zadacha1zhd
 
             app.UseAuthorization();
 
-            app.MapControllerRoute(
+            app.MapControllerRoute
+            (
                 name: "default",
-                pattern: "{controller=Authentication}/{action=Authentication}/{id?}");
+                pattern: "{controller=Authentication}/{action=Authentication}/{id?}"
+            );
 
             app.Run();
         }
