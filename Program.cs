@@ -6,7 +6,11 @@ namespace Zadacha1zhd
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+            {
+                Args = args,
+                WebRootPath = "staticstyle"
+            });
 
             builder.Services.AddControllersWithViews();
 
