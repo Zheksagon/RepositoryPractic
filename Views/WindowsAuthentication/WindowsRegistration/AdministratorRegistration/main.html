@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Окно регистрации администратора</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+    <body>
+        <div class="container">
+            <div class="heading-text">РЕГИСТРАЦИЯ</div>
+            <div class="input-boxes">
+                <div class="input">
+                    <p>Логин</p>
+                    <input type="text" name="login" id="login">
+                </div>
+                
+                <div class="input">
+                    <p>Почта / Телефон</p>
+                    <input type="text" name="phoneOrEmail" id="phoneOrEmail">
+                </div>
+                
+                <div class="input">
+                    <p>Пароль</p>
+                    <div class="password-wrapper">
+                        <input type="password" name="password" id="password">
+                        <button type="button" class="toggle-password" data-target="password">♦</button>
+                    </div>
+                </div>
+                
+                <div class="input">
+                    <p>Повтор пароля</p>
+                    <div class="password-wrapper">
+                        <input type="password" name="passwordRepeat" id="passwordRepeat">
+                        <button type="button" class="toggle-password" data-target="passwordRepeat">♦</button>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <p>PIN-код</p>
+                    <input  type="text"
+                            inputmode="numeric"
+                            pattern="[0-9]*"
+                            maxlength="4"
+                            autocomplete="one-time-code"
+                            name="pin"
+                            id="pin">
+                </div>
+
+            </div>
+
+            <div class="confirm-buttons">
+                <button class="regButton" type="submit">Зарегистрироваться</button>
+                <a href="main2.html">Войти в аккаунт</a>
+            </div>
+            </div>
+        </div>
+
+        <script>
+            document.querySelectorAll('.toggle-password').forEach(button => {
+                button.addEventListener('click', () => {
+                    const input = document.getElementById(button.dataset.target);
+                    const isPassword = input.type === 'password';
+                    input.type = isPassword ? 'text' : 'password';
+                    button.textContent = isPassword ? '•' : '♦';
+                    button.setAttribute('aria-label', isPassword ? 'Скрыть пароль' : 'Показать пароль');
+                });
+            });
+
+            const pinInput = document.getElementById('pin');
+            pinInput.addEventListener('input', () => {
+                pinInput.value = pinInput.value.replace(/\D/g, '').slice(0, 4);
+            });
+        </script>
+
+    </body>
+</html>
