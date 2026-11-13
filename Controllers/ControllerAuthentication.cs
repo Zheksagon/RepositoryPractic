@@ -1,6 +1,6 @@
-using Zadacha1zhd.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Zadacha1zhd.Models;
 
 namespace Zadacha1zhd.Controllers
 {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zadacha1zhd.Model
+namespace Zadacha1zhd.Models
 {
-    public class AuthenticationModel
+    public class AuthenticationModels
     {
         public string LoginEmailPhoneNumber { get; set; } = string.Empty;
 
