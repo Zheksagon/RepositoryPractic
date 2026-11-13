@@ -1,5 +1,5 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Zadacha1zhd.Models.AuthenticationModel
-@addTagHelper *, Microsoft.Asp.Net.Core.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +44,7 @@
                 <button class="regButton" type="submit">Зарегистрироваться</button>
 
                 @* Ссылки на другие страницы регистрации и авторизации (пока что костыльные)*@
-                <a href="empty">Зарегистрироваться за менеджера</a>
+                <a asp-controller="Authentication" asp-action="ManagerRegistration">Зарегистрироваться за менеджера</a>
                 <a href="empty">Зарегистрироваться за администратора</a>
                 <a href="empty">Войти в аккаунт за пользователя</a>
                 <a href="empty">Войти в аккаунт за менеджера</a>
