@@ -45,10 +45,10 @@
 
                 @* Ссылки на другие страницы регистрации и авторизации (пока что костыльные)*@
                 <a asp-controller="Authentication" asp-action="ManagerRegistration">Зарегистрироваться за менеджера</a>
-                <a href="empty">Зарегистрироваться за администратора</a>
-                <a href="empty">Войти в аккаунт за пользователя</a>
-                <a href="empty">Войти в аккаунт за менеджера</a>
-                <a href="empty">Войти в аккаунт за администратора</a>
+                <a asp-controller="Authentication" asp-action="AdministratorRegistration">Зарегистрироваться за администратора</a>
+                <a asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт за пользователя</a>
+                <a asp-controller="Authentication" asp-action="ManagerAuthorization">Войти в аккаунт за менеджера</a>
+                <a asp-controller="Authentication" asp-action="AdministratorAuthorization">Войти в аккаунт за администратора</a>
             </div>
             </div>
         </div>
