@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;        
+using Microsoft.EntityFrameworkCore;
+using Zadacha1zhd.DataBase;
+using Zadacha1zhd.Models;
 
 namespace Zadacha1zhd
 {
@@ -13,6 +17,9 @@ namespace Zadacha1zhd
             });
 
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<DataBaseContext>(dbOptions =>
+            dbOptions.UseSqlite("Data Source=rental.db"));
 
             var app = builder.Build();
 

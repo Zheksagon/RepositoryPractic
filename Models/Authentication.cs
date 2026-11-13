@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace Zadacha1zhd.Models
 {
-    public class AuthenticationModel
+    public class AuthenticationModel : IdentityUser
     {
         public string LoginEmailPhoneNumber { get; set; } = string.Empty;
 
@@ -15,10 +11,6 @@ namespace Zadacha1zhd.Models
         public string PhoneNumberEmail { get; set; } = string.Empty;
 
         public string Password { get; set; } = string.Empty;
-
-        public string Email { get; set; } = string.Empty;
-
-        public string PhoneNumber { get; set; } = string.Empty;
 
         public string PINcode { get; set; } = string.Empty;
     }
