@@ -36,7 +36,13 @@
 
             <div class="confirm-buttons">
                 <button class="regButton" type="submit">Авторизаваться</button>
-                <a href="main2.html">Создать аккаунт</a>
+
+                @* Ссылки на другие страницы регистрации и авторизации (пока что костыльные)*@
+                <a asp-controller="Authentication" asp-action="Authentication">На главную (регистрация пользователя)</a>
+                <a asp-controller="Authentication" asp-action="ManagerRegistration">Зарегистрироваться за менеджера</a>
+                <a asp-controller="Authentication" asp-action="AdministratorRegistration">Зарегистрироваться за администратора</a>
+                <a asp-controller="Authentication" asp-action="ManagerAuthorization">Войти в аккаунт за менеджера</a>
+                <a asp-controller="Authentication" asp-action="AdministratorAuthorization">Войти в аккаунт за администратора</a>
             </div>
             </div>
         </div>
