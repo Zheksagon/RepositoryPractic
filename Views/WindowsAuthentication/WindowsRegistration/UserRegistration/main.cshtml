@@ -13,43 +13,45 @@
     <body>
         <div class="container">
             <div class="heading-text">РЕГИСТРАЦИЯ (Пользователь)</div>
-            <div class="input-boxes">
-                <div class="input">
-                    <p>Логин</p>
-                    <input type="text" name="login" id="login">
-                </div>
-                
-                <div class="input">
-                    <p>Почта / Телефон</p>
-                    <input type="text" name="phoneOrEmail" id="phoneOrEmail">
-                </div>
-                
-                <div class="input">
-                    <p>Пароль</p>
-                    <div class="password-wrapper">
-                        <input type="password" name="password" id="password">
-                        <button type="button" class="toggle-password" data-target="password">♦</button>
+                <form action="">
+                    <div class="input-boxes">
+                        <div class="input">
+                            <p>Логин</p>
+                            <input type="text" name="login" id="login">
+                        </div>
+                        
+                        <div class="input">
+                            <p>Почта / Телефон</p>
+                            <input type="text" name="phoneOrEmail" id="phoneOrEmail">
+                        </div>
+                        
+                        <div class="input">
+                            <p>Пароль</p>
+                            <div class="password-wrapper">
+                                <input type="password" name="password" id="password">
+                                <button type="button" class="toggle-password" data-target="password">♦</button>
+                            </div>
+                        </div>
+                        
+                        <div class="input">
+                            <p>Повтор пароля</p>
+                            <div class="password-wrapper">
+                                <input type="password" name="passwordRepeat" id="passwordRepeat">
+                                <button type="button" class="toggle-password" data-target="passwordRepeat">♦</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="input">
-                    <p>Повтор пароля</p>
-                    <div class="password-wrapper">
-                        <input type="password" name="passwordRepeat" id="passwordRepeat">
-                        <button type="button" class="toggle-password" data-target="passwordRepeat">♦</button>
-                    </div>
-                </div>
-            </div>
-            <div class="confirm-buttons">
-                <button class="regButton" type="submit">Зарегистрироваться</button>
+                    <div class="confirm-buttons">
+                        <button class="regButton" type="submit">Зарегистрироваться</button>
 
-                @* Ссылки на другие страницы регистрации и авторизации (пока что костыльные)*@
-                <a asp-controller="Authentication" asp-action="ManagerRegistration">Зарегистрироваться за менеджера</a>
-                <a asp-controller="Authentication" asp-action="AdministratorRegistration">Зарегистрироваться за администратора</a>
-                <a asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт за пользователя</a>
-                <a asp-controller="Authentication" asp-action="ManagerAuthorization">Войти в аккаунт за менеджера</a>
-                <a asp-controller="Authentication" asp-action="AdministratorAuthorization">Войти в аккаунт за администратора</a>
-            </div>
+                        @* Ссылки на другие страницы регистрации и авторизации (пока что костыльные)*@
+                        <a asp-controller="Authentication" asp-action="ManagerRegistration">Зарегистрироваться за менеджера</a>
+                        <a asp-controller="Authentication" asp-action="AdministratorRegistration">Зарегистрироваться за администратора</a>
+                        <a asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт за пользователя</a>
+                        <a asp-controller="Authentication" asp-action="ManagerAuthorization">Войти в аккаунт за менеджера</a>
+                        <a asp-controller="Authentication" asp-action="AdministratorAuthorization">Войти в аккаунт за администратора</a>
+                    </div>
+                </form>
             </div>
         </div>
 
