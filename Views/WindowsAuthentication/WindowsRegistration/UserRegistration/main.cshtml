@@ -13,22 +13,22 @@
     <body>
         <div class="container">
             <div class="heading-text">РЕГИСТРАЦИЯ (Пользователь)</div>
-                <form action="">
+                <form asp-controller="Authentication" asp-action="MainAuthentication" method="post">
                     <div class="input-boxes">
                         <div class="input">
                             <p>Логин</p>
-                            <input type="text" name="login" id="login">
+                            <input asp-for="Login" type="text" id="login" required>
                         </div>
                         
                         <div class="input">
                             <p>Почта / Телефон</p>
-                            <input type="text" name="phoneOrEmail" id="phoneOrEmail">
+                            <input asp-for="PhoneNumberEmail" type="text" id="phoneOrEmail" required>
                         </div>
                         
                         <div class="input">
                             <p>Пароль</p>
                             <div class="password-wrapper">
-                                <input type="password" name="password" id="password">
+                                <input asp-for="Password" type="password" id="password" required>
                                 <button type="button" class="toggle-password" data-target="password">♦</button>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                         <div class="input">
                             <p>Повтор пароля</p>
                             <div class="password-wrapper">
-                                <input type="password" name="passwordRepeat" id="passwordRepeat">
+                                <input type="password" name="passwordRepeat" id="passwordRepeat" required>
                                 <button type="button" class="toggle-password" data-target="passwordRepeat">♦</button>
                             </div>
                         </div>

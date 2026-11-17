@@ -12,6 +12,23 @@ namespace Zadacha1zhd.Controllers
             return View("~/Views/WindowsAuthentication/WindowsRegistration/UserRegistration/main.cshtml");
         }
 
+        [HttpPost]
+        public IActionResult MainAuthentication(AuthenticationModel model, string passwordRepeat)
+        {
+            string MainWindow = "~/Views/WindowsAuthentication/WindowsRegistration/UserRegistration/main.cshtml";
+
+            if (model.Password != passwordRepeat) 
+            {
+                
+                return View(MainWindow, model);
+            }
+
+            return Content 
+            (
+                $"логин {model.Login},почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}"
+            );
+        }
+
         [HttpGet]
         public IActionResult ManagerRegistration()
         {
