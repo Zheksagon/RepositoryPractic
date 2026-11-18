@@ -15,12 +15,15 @@
                 try {
                     ErrorMessage.textContent = "";
 
+                    const firstName = document.getElementById("firstName").value.trim();
+                    const lastName = document.getElementById("lastName").value.trim();
+                    const patronymic = document.getElementById("patronymic").value.trim();
                     const login = document.getElementById("login").value.trim();
                     const phoneOrEmail = document.getElementById("phoneOrEmail").value.trim();
                     const password = document.getElementById("password").value.trim();
                     const passwordRepeat = document.getElementById("passwordRepeat").value.trim();
 
-                    if (!login || !phoneOrEmail || !password) {
+                    if (!firstName || !lastName || !patronymic || !login || !phoneOrEmail || !password) {
                         throw new Error("Заполните обязательные поля!");
                     }
                     if (password != passwordRepeat) {

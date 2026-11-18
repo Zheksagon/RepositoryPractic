@@ -20,8 +20,7 @@ namespace Zadacha1zhd.Controllers
             model.Role = 0;
 
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine($"логин {model.Login},почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}");
-            Console.WriteLine($"роль: {model.Role}");
+            Console.WriteLine($"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}");
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
             if (model.Password != passwordRepeat)
@@ -31,7 +30,7 @@ namespace Zadacha1zhd.Controllers
 
             return Content
             (
-                $"логин {model.Login},почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}"
+                $"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}"
             );
         }
 

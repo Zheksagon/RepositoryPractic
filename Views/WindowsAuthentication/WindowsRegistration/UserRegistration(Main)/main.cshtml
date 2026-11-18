@@ -17,21 +17,37 @@
             <div id="error" style="color: #ff6b6b; text-align: center; margin-top: 5px" class="@*Добавь сюда класс в css*@"></div>
 
             <form id="form" asp-controller="Authentication" asp-action="MainAuthentication" method="post">
-                    <div class="input-boxes">
-                        <div class="input">
+                <div class="input-boxes">
+
+                    <div class="input">
+                        <p>Имя</p>
+                        <input asp-for="FirstName" type="text" id="firstName" name="firstName" required>
+                    </div>
+                
+                    <div class="input">
+                        <p>Фамилия</p>
+                        <input asp-for="LastName" type="text" id="lastName" name="lastName" required>
+                    </div>
+                
+                    <div class="input">
+                        <p>Отчество</p>
+                        <input asp-for="Patronymic" type="text" id="patronymic" name="patronymic" required>
+                    </div>
+                
+                    <div class="input">
                         <p>Логин</p>
-                        <input asp-for="Login" type="text" id="login" required>
+                        <input asp-for="Login" type="text" id="login" name="login" required>
                     </div>
                         
                     <div class="input">
                         <p>Почта / Телефон</p>
-                        <input asp-for="PhoneNumberEmail" type="text" id="phoneOrEmail" required>
+                        <input asp-for="PhoneNumberEmail" type="text" id="phoneOrEmail" name="phoneOrEmail" required>
                     </div>
                         
                     <div class="input">
                         <p>Пароль</p>
                         <div class="password-wrapper">
-                            <input asp-for="Password" type="password" id="password" required>
+                            <input asp-for="Password" type="password" id="password" name="password" required>
                             <button type="button" class="toggle-password" data-target="password">♦</button>
                         </div>
                     </div>
