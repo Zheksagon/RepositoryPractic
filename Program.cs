@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;        
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Zadacha1zhd.DataBase;
 using Zadacha1zhd.Models;

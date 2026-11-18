@@ -4,9 +4,15 @@ namespace Zadacha1zhd.Models
 {
     public class AuthenticationModel : IdentityUser
     {
-        public string LoginEmailPhoneNumber { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+
+        public string LastName { get; set; } = string.Empty;
+
+        public string Patronymic { get; set; } = string.Empty;
 
         public string Login { get; set; } = string.Empty;
+
+        public string LoginEmailPhoneNumber { get; set; } = string.Empty;
 
         public string PhoneNumberEmail { get; set; } = string.Empty;
 
