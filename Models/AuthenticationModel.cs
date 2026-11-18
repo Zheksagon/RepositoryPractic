@@ -18,7 +18,7 @@ namespace Zadacha1zhd.Models
 
         public string Password { get; set; } = string.Empty;
 
-        public string PINcode { get; set; } = string.Empty;
+        public int PINcode { get; set; }
 
         public int Role { get; set; } = 0;
     }

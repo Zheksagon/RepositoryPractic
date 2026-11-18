@@ -28,6 +28,7 @@ Form.addEventListener("submit", (event) => {
         const loginOrEmailOrPhone = document.getElementById("loginOrEmailOrPhone").value.trim();
         const password = document.getElementById("password").value.trim();
         const passwordRepeat = document.getElementById("passwordRepeat").value.trim();
+        const pincode = document.getElementById("pin").value
 
         if (    
             (document.getElementById("firstName") && !firstName) ||
@@ -36,7 +37,8 @@ Form.addEventListener("submit", (event) => {
             !login ||
             (document.getElementById("phoneOrEmail") && !phoneOrEmail) ||
             (document.getElementById("loginOrEmailOrPhone") && !loginOrEmailOrPhone) ||
-            !password
+            !password ||
+            (document.getElementById("pin") && !pincode)
         ) {
             throw new Error("Заполните обязательные поля!");
         }

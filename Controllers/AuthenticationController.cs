@@ -40,6 +40,28 @@ namespace Zadacha1zhd.Controllers
             return View("~/Views/WindowsAuthentication/WindowsRegistration/ManagerRegistration/main.cshtml");
         }
 
+        [HttpPost]
+        public IActionResult ManagerRegistration(AuthenticationModel model, string passwordRepeat)
+        {
+            string ManagerReg = "~/Views/WindowsAuthentication/WindowsRegistration/ManagerRegistration/main.cshtml";
+
+            model.Role = 1;
+
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            Console.WriteLine($"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}, пинкод {model.PINcode}");
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+            if (model.Password != passwordRepeat)
+            {
+                return View(ManagerReg, model);
+            }
+
+            return Content
+            (
+                $"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}, пинкод {model.PINcode}"
+            );
+        }
+
         [HttpGet]
         public IActionResult AdministratorRegistration()
         {
