@@ -15,7 +15,7 @@ namespace Zadacha1zhd.Controllers
         [HttpPost]
         public IActionResult MainAuthentication(AuthenticationModel model, string passwordRepeat)
         {
-            string MainWindow = "~/Views/WindowsAuthentication/WindowsRegistration/UserRegistration(Main)/main.cshtml";
+            string MainWindowReg = "~/Views/WindowsAuthentication/WindowsRegistration/UserRegistration(Main)/main.cshtml";
 
             model.Role = 0;
 
@@ -25,7 +25,7 @@ namespace Zadacha1zhd.Controllers
 
             if (model.Password != passwordRepeat)
             {
-                return View(MainWindow, model);
+                return View(MainWindowReg, model);
             }
 
             return Content
@@ -49,7 +49,20 @@ namespace Zadacha1zhd.Controllers
         [HttpGet]
         public IActionResult UserAuthorization()
         {
-            return View("~/Views/WindowsAuthentication/WindowsAuthorization/UserAuthorization/main.cshtml");
+            return View("~/Views/WindowsAuthentication/WindowsAuthorization/UserAuthorization(Main)/main.cshtml");
+        }
+
+        [HttpPost]
+        public IActionResult MainUserAithorization(AuthenticationModel model)
+        {
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            Console.WriteLine($"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}");
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+            return Content
+            (
+                $"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}"
+            );
         }
 
         [HttpGet]
