@@ -9,9 +9,11 @@ document.querySelectorAll('.toggle-password').forEach(button => {
 });
 
 const pinInput = document.getElementById('pin');
-pinInput.addEventListener('input', () => {
-    pinInput.value = pinInput.value.replace(/\D/g, '').slice(0, 4);
-});
+if (pinInput !== null) {
+    pinInput.addEventListener('input', () => {
+        pinInput.value = pinInput.value.replace(/\D/g, '').slice(0, 4);
+    });
+}
 
 const ErrorMessage = document.getElementById("error");
 const Form = document.getElementById("form");
@@ -20,31 +22,84 @@ Form.addEventListener("submit", (event) => {
     try {
         ErrorMessage.textContent = "";
 
-        const firstName = document.getElementById("firstName").value.trim();
-        const lastName = document.getElementById("lastName").value.trim();
-        const patronymic = document.getElementById("patronymic").value.trim();
-        const login = document.getElementById("login").value.trim();
-        const phoneOrEmail = document.getElementById("phoneOrEmail").value.trim();
-        const loginOrEmailOrPhone = document.getElementById("loginOrEmailOrPhone").value.trim();
-        const password = document.getElementById("password").value.trim();
-        const passwordRepeat = document.getElementById("passwordRepeat").value.trim();
-        const pincode = document.getElementById("pin").value
+        const firstName = document.getElementById("firstName")?.value.trim();
+        const lastName = document.getElementById("lastName")?.value.trim();
+        const patronymic = document.getElementById("patronymic")?.value.trim();
+        const login = document.getElementById("login")?.value.trim();
+        const phoneOrEmail = document.getElementById("phoneOrEmail")?.value.trim();
+        const loginOrEmailOrPhone = document.getElementById("loginOrEmailOrPhone")?.value.trim();
+        const password = document.getElementById("password")?.value.trim();
+        const passwordRepeat = document.getElementById("passwordRepeat")?.value.trim();
 
-        if (    
-            (document.getElementById("firstName") && !firstName) ||
-            (document.getElementById("lastName") && !lastName) ||
-            (document.getElementById("patronymic") && !patronymic) ||
-            !login ||
-            (document.getElementById("phoneOrEmail") && !phoneOrEmail) ||
-            (document.getElementById("loginOrEmailOrPhone") && !loginOrEmailOrPhone) ||
-            !password ||
-            (document.getElementById("pin") && !pincode)
-        ) {
-            throw new Error("Заполните обязательные поля!");
+        if (firstName !== undefined || lastName !== undefined || patronymic !== undefined) {
+            
+            const firstname = /^[А-Яа-яЁё-]{2,}$/;
+            const lastname = /^[А-Яа-яЁё-]{2,}$/;
+            const Patronymic = /^[А-Яа-яЁё-]{2,}$/;
+
+            const fnametest = firstname.test(firstName)
+            const lnametest = lastname.test(lastName)
+            const patrtest = Patronymic.test(patronymic)
+
+            if (!fnametest) {
+                throw new Error("Имя пишется только русскими буквами!");
+            }
+
+            if (!lnametest) {
+                throw new Error("Фамилия пишется только русскими буквами!");
+            }
+
+            if (!patrtest) {
+                throw new Error("Отчество пишется только русскими буквами!");
+            }
         }
-        if (password !== passwordRepeat) {
-            throw new Error("Пароли не совпадают!")
+
+        if (login !== undefined) {
+            if (login.length < 3) {
+                throw new Error("Логин должен быть не меньше, чем 3 символа!");
+            }
         }
+
+        if (phoneOrEmail !== undefined) {
+            
+            const email = /^[^\s@]+@[^\s@]+.[^\s@]{2,}$/;
+            const phone = /^8d{10}$/;
+
+            const emailtest = email.test(phoneOrEmail);
+            const phonetest = phone.test(phoneOrEmail);
+            
+            if (!emailtest && !phonetest) {
+                throw new Error("Напишите почту с символом @ или номер телефона, который начинается с 8!");
+            }
+        }
+
+        if (loginOrEmailOrPhone !== undefined) {
+            
+            const email = /^[^\s@]+@[^\s@]+.[^\s@]{2,}$/;
+            const phone = /^8d{10}$/;
+            const login = /^[^\s@]{4,}$/;
+
+            const emailtest = email.test(loginOrEmailOrPhone);
+            const phonetest = phone.test(loginOrEmailOrPhone);
+            const logintest = login.test(loginOrEmailOrPhone);
+            
+            if (!emailtest && !phonetest && !logintest) {
+                throw new Error("Напишите почту с символом @ или номер телефона, который начинается с 8 или логин, который больше, чем 3 символа!");
+            }
+        }
+
+        if (password !== undefined) {
+            if (password.length < 6) {
+                throw new Error("Пароль должен быть не меньше 6 символов!");
+            }
+        }
+
+        if (passwordRepeat !== undefined) {
+            if (password !== passwordRepeat) {
+                throw new Error("Пароли не совпадают!");
+            }
+        }
+
     } 
     catch (Error) {
         event.preventDefault();
