@@ -13,7 +13,7 @@ namespace Zadacha1zhd.Controllers
         }
 
         [HttpPost]
-        public IActionResult MainAuthentication(AuthenticationModel model, string passwordRepeat)
+        public IActionResult MainAuthentication(AuthenticationModel model, string passwordRepeat) /* ЗАМЕНИ НА UserRegistration ВСЁ*/
         {
             string MainWindowReg = "~/Views/WindowsAuthentication/WindowsRegistration/UserRegistration(Main)/main.cshtml";
 

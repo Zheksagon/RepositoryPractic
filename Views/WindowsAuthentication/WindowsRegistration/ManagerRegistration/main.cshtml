@@ -3,18 +3,18 @@
 
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Окно регистрации менеджера</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/Authentication/authentication.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Окно регистрации менеджера</title>
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/Authentication/authentication.css">
+    </head>
     <body>
         <div class="container">
             <div class="heading-text">РЕГИСТРАЦИЯ (Менеджер)</div>
             
-            <div id="error" style="color: #ff6b6b; text-align: center; margin-top: 5px" @*class="Добавь сюда класс в css"*@></div>
+            <div class="error-message" id="error"></div>
 
             <form id="form" asp-controller="Authentication" asp-action="ManagerRegistration" method="post">
                 <div class="input-boxes">
@@ -73,17 +73,19 @@
                     </div>
                 
                 </div>
-                <div class="confirm-buttons">
-                    <button class="regButton" type="submit">Зарегистрироваться</button>
-
-                    @* Ссылки на другие страницы регистрации и авторизации (пока что костыльные)*@
-                    <a asp-controller="Authentication" asp-action="Authentication">На главную (регистрация пользователя)</a>
-                    <a asp-controller="Authentication" asp-action="AdministratorRegistration">Зарегистрироваться за администратора</a>
-                    <a asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт за пользователя</a>
-                    <a asp-controller="Authentication" asp-action="ManagerAuthorization">Войти в аккаунт за менеджера</a>
-                    <a asp-controller="Authentication" asp-action="AdministratorAuthorization">Войти в аккаунт за администратора</a>
-                </div>
             </form>
+            <div class="confirm-buttons">
+                <button class="regButton" type="submit">Зарегистрироваться</button>
+
+                <a class="window-changer" asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт</a>
+
+                <div class="links-container">
+                    <a asp-controller="Authentication" asp-action="Authentication">Пользователь</a>
+                    <a asp-controller="Authentication" asp-action="ManagerRegistration">Менеджер</a>
+                    <a asp-controller="Authentication" asp-action="AdministratorRegistration">Администратор</a>
+                </div>
+
+            </div>
         </div>
 
         <script src="/js/Authentication/Authentication.js" asp-append-version="true"></script>

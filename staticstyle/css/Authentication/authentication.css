@@ -5,6 +5,7 @@
     --theme-darkgray: #3a4750;
 }
 
+
 body {
     position: relative;
     background-color: var(--theme-darkergray);
@@ -15,7 +16,7 @@ body {
     color: white;
     font-family: Arial;
 }
-
+html, body{ min-height: 100vh; }
 body::before {
     content: "";
     position: absolute;                 
@@ -29,17 +30,22 @@ body::before {
     opacity: 0.5;            
 }
 
-.container {
-    background-color: var(--theme-darkgray);
-}
 
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+form{
+    background-color: var(--theme-darkergray);
+}
 .heading-text {
     text-align: center;
+    font-size: 25px;
     padding: 15px;
     background-color: var(--theme-red);
     font-weight: bold;
 }
-
 .input-boxes {
     padding: 15px;
 }
@@ -60,18 +66,23 @@ input {
     flex-direction: column;
     gap: 10px;
     text-align: center;
+    align-items: center;
     justify-content: center;
-    background-color: #4a555e;
+    background-color: var(--theme-darkgray);
     padding: 15px;
+}
+.window-changer{
+    padding: 5px;
+    font-size: 18px;
+    background-color: #d72323;
 }
 
 .confirm-buttons a {
     color: white;
-    text-decoration: underline;
 }
 
 .confirm-buttons a:hover {
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .regButton {
@@ -79,18 +90,18 @@ input {
     color: black;
     padding: 10px;
     font-weight: bold;
+    font-size: 25px;
+    width: 100%;
 }
-
 .regButton:hover {
-    opacity: 0.8;
+    opacity: 0.85;
 }
-
 input:hover {
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 p {
-    font-size: small;
+    font-size: 20px;
     padding-bottom: 5px;
 }
 
@@ -110,7 +121,29 @@ p {
     right: 12px;
     width: 12px;
     font-size: 16px;
-   
     color: black;
+}
+
+.links-container{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+.links-container a{
+    padding: 7.5px;
+    font-size: 20px;
+    flex: 1;
+    text-decoration: none;
+    background-color: var(--theme-darkergray);
+    border-bottom: 2px solid var(--theme-red);
+}
+
+.error-message{
+    background-color: var(--theme-darkergray);
+    color: #f05454; 
+    text-align: center; 
+    padding: 10px;
+
 }
 
