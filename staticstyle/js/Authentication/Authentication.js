@@ -30,6 +30,7 @@ Form.addEventListener("submit", (event) => {
         const loginOrEmailOrPhone = document.getElementById("loginOrEmailOrPhone")?.value.trim();
         const password = document.getElementById("password")?.value.trim();
         const passwordRepeat = document.getElementById("passwordRepeat")?.value.trim();
+        const pincode = document.getElementById('pin')?.value.trim();
 
         if (firstName !== undefined || lastName !== undefined || patronymic !== undefined) {
             
@@ -97,6 +98,12 @@ Form.addEventListener("submit", (event) => {
         if (passwordRepeat !== undefined) {
             if (password !== passwordRepeat) {
                 throw new Error("Пароли не совпадают!");
+            }
+        }
+
+        if (pincode !== undefined) {
+            if (pincode.length < 4) {
+                throw new Error("Пинкод должен быть 4 символа!");
             }
         }
 
