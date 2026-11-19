@@ -6,7 +6,7 @@ using Zadacha1zhd.Models;
 
 namespace Zadacha1zhd
 {
-    internal class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
