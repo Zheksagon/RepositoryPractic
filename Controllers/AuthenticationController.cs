@@ -7,15 +7,15 @@ namespace Zadacha1zhd.Controllers
     public class AuthenticationController : Controller
     {
         [HttpGet]
-        public IActionResult Authentication()
+        public IActionResult UserRegistration()
         {
-            return View("~/Views/WindowsAuthentication/WindowsRegistration/UserRegistration(Main)/main.cshtml");
+            return View("~/Views/WindowsAuthentication/WindowsRegistration/userreg.cshtml");
         }
 
         [HttpPost]
-        public IActionResult MainAuthentication(AuthenticationModel model, string passwordRepeat) /* ЗАМЕНИ НА UserRegistration ВСЁ*/
+        public IActionResult UserRegistration(AuthenticationModel model, string passwordRepeat)
         {
-            string MainWindowReg = "~/Views/WindowsAuthentication/WindowsRegistration/UserRegistration(Main)/main.cshtml";
+            string MainWindowReg = "~/Views/WindowsAuthentication/WindowsRegistration/userreg.cshtml";
 
             model.Role = 0;
 
@@ -37,13 +37,13 @@ namespace Zadacha1zhd.Controllers
         [HttpGet]
         public IActionResult ManagerRegistration()
         {
-            return View("~/Views/WindowsAuthentication/WindowsRegistration/ManagerRegistration/main.cshtml");
+            return View("~/Views/WindowsAuthentication/WindowsRegistration/managerreg.cshtml");
         }
 
         [HttpPost]
         public IActionResult ManagerRegistration(AuthenticationModel model, string passwordRepeat)
         {
-            string ManagerReg = "~/Views/WindowsAuthentication/WindowsRegistration/ManagerRegistration/main.cshtml";
+            string ManagerReg = "~/Views/WindowsAuthentication/WindowsRegistration/managerreg.cshtml";
 
             model.Role = 1;
 
@@ -65,13 +65,13 @@ namespace Zadacha1zhd.Controllers
         [HttpGet]
         public IActionResult AdministratorRegistration()
         {
-            return View("~/Views/WindowsAuthentication/WindowsRegistration/AdministratorRegistration/main.cshtml");
+            return View("~/Views/WindowsAuthentication/WindowsRegistration/adminreg.cshtml");
         }
 
                 [HttpPost]
         public IActionResult AdministratorRegistration(AuthenticationModel model, string passwordRepeat)
         {
-            string AdminReg = "~/Views/WindowsAuthentication/WindowsRegistration/AdministratorRegistration/main.cshtml";
+            string AdminReg = "~/Views/WindowsAuthentication/WindowsRegistration/adminreg.cshtml";
 
             model.Role = 2;
 
@@ -93,11 +93,11 @@ namespace Zadacha1zhd.Controllers
         [HttpGet]
         public IActionResult UserAuthorization()
         {
-            return View("~/Views/WindowsAuthentication/WindowsAuthorization/UserAuthorization(Main)/main.cshtml");
+            return View("~/Views/WindowsAuthentication/WindowsAuthorization/userauth.cshtml");
         }
 
         [HttpPost]
-        public IActionResult MainUserAithorization(AuthenticationModel model)
+        public IActionResult UserAuthorization(AuthenticationModel model)
         {
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             Console.WriteLine($"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}");
@@ -112,7 +112,7 @@ namespace Zadacha1zhd.Controllers
         [HttpGet]
         public IActionResult ManagerAuthorization()
         {
-            return View("~/Views/WindowsAuthentication/WindowsAuthorization/ManagerAuthorization/main.cshtml");
+            return View("~/Views/WindowsAuthentication/WindowsAuthorization/managerauth.cshtml");
         }
 
         [HttpPost]
@@ -131,7 +131,7 @@ namespace Zadacha1zhd.Controllers
         [HttpGet]
         public IActionResult AdministratorAuthorization()
         {
-            return View("~/Views/WindowsAuthentication/WindowsAuthorization/AdministratorAuthorization/main.cshtml");
+            return View("~/Views/WindowsAuthentication/WindowsAuthorization/adminauth.cshtml");
         }
 
         [HttpPost]

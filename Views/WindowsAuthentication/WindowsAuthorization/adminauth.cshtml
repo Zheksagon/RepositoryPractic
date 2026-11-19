@@ -8,16 +8,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Окно авторизации менеджера</title>
         <link rel="stylesheet" href="/css/reset.css">
-        <link rel="stylesheet" href="/css/Authentication/authentication.css">
+        <link rel="stylesheet" href="/css/authentication.css">
     </head>
     <body>
         <div class="container">
 
-            <div class="heading-text">АВТОРИЗАЦИЯ (Менеджер)</div>
+            <div class="heading-text">АВТОРИЗАЦИЯ (Администратор)</div>
 
-            <div class="error-message" id="error"></div>
-
-            <form id="form" asp-controller="Authentication" asp-action="ManagerAuthorization" method="post">
+            <form id="form" asp-controller="Authentication" asp-action="AdministratorAuthorization" method="post">
+                <div class="error-message" id="error"></div>
                 <div class="input-boxes">
                     <div class="input">
                         <p>Логин / Почта / Телефон</p>
@@ -43,22 +42,21 @@
                             required>
                     </div>
                 </div>
+
+                <div class="confirm-buttons">
+                    <button class="regButton" type="submit">Авторизоваться</button>
+
+                    <a class="window-changer" asp-controller="Authentication" asp-action="UserRegistration">Создать аккаунт</a>
+                </div>
+
+                <div class="links-container">
+                    <a asp-controller="Authentication" asp-action="UserAuthorization">Пользователь</a>
+                    <a asp-controller="Authentication" asp-action="ManagerAuthorization">Менеджер</a>
+                    <a asp-controller="Authentication" asp-action="AdministratorAuthorization">Администратор</a>
+                </div>
             </form>
-
-            <div class="confirm-buttons">
-                <button class="regButton" type="submit">Авторизоваться</button>
-
-                <a class="window-changer" asp-controller="Authentication" asp-action="Authentication">Создать аккаунт</a>
-            </div>
-
-            <div class="links-container">
-                <a asp-controller="Authentication" asp-action="UserAuthorization">Пользователь</a>
-                <a asp-controller="Authentication" asp-action="ManagerAuthorization">Менеджер</a>
-                <a asp-controller="Authentication" asp-action="AdministratorAuthorization">Администратор</a>
-            </div>
-
         </div>
 
-        <script src="/js/Authentication/Authentication.js" asp-append-version="true"></script>
+        <script src="/js/authentication.js" asp-append-version="true"></script>
     </body>
 </html>

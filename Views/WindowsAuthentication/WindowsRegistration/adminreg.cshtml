@@ -6,20 +6,20 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Окно регистрации пользователя</title>
+        <title>Окно регистрации администратора</title>
         <link rel="stylesheet" href="/css/reset.css">
-        <link rel="stylesheet" href="/css/Authentication/authentication.css">
+        <link rel="stylesheet" href="/css/authentication.css">
     </head>
     <body>
         <div class="container">
-            <div class="heading-text">РЕГИСТРАЦИЯ (Пользователь)</div>
-
+            <div class="heading-text">РЕГИСТРАЦИЯ (Администратор)</div>
+             
             <div class="error-message" id="error"></div>
 
-            <form id="form" asp-controller="Authentication" asp-action="MainAuthentication" method="post">
+            <form id="form" asp-controller="Authentication" asp-action="AdministratorRegistration" method="post">
                 <div class="input-boxes">
 
-                    <div class="input">
+                   <div class="input">
                         <p>Имя</p>
                         <input asp-for="FirstName" type="text" id="firstName" name="FirstName" required>
                     </div>
@@ -55,26 +55,40 @@
                     <div class="input">
                         <p>Повтор пароля</p>
                         <div class="password-wrapper">
-                            <input type="password" id="passwordRepeat" name="PasswordRepeat" required>
+                            <input type="password" id="passwordRepeat" name="passwordRepeat" required>
                             <button type="button" class="toggle-password" data-target="passwordRepeat">♦</button>
                         </div>
                     </div>
+
+                    <div class="input">
+                        <p>PIN-код</p>
+                        <input  asp-for="PINcode"
+                                type="text"
+                                inputmode="numeric"
+                                pattern="[0-9]*"
+                                maxlength="4"
+                                autocomplete="one-time-code"
+                                id="pin"
+                                required>
+                    </div>
+                
+                </div>
+
+                <div class="confirm-buttons">
+                    <button class="regButton" type="submit">Зарегистрироваться</button>
+
+                    <a class="window-changer" asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт</a>
+
+                    <div class="links-container">
+                        <a asp-controller="Authentication" asp-action="UserRegistration">Пользователь</a>
+                        <a asp-controller="Authentication" asp-action="ManagerRegistration">Менеджер</a>
+                        <a asp-controller="Authentication" asp-action="AdministratorRegistration">Администратор</a>
+                    </div>
                 </div>
             </form>
-            <div class="confirm-buttons">
-                <button class="regButton" type="submit">Зарегистрироваться</button>
-
-                <a class="window-changer" asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт</a>
-
-                <div class="links-container">
-                    <a asp-controller="Authentication" asp-action="Authentication">Пользователь</a>
-                    <a asp-controller="Authentication" asp-action="ManagerRegistration">Менеджер</a>
-                    <a asp-controller="Authentication" asp-action="AdministratorRegistration">Администратор</a>
-                </div>
-            </div>
         </div>
 
-        <script src="/js/Authentication/Authentication.js" asp-append-version="true"></script>
+        <script src="/js/authentication.js" asp-append-version="true"></script>
 
     </body>
 </html>

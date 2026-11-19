@@ -64,7 +64,7 @@ Form.addEventListener("submit", (event) => {
         if (phoneOrEmail !== undefined) {
             
             const email = /^[^\s@]+@[^\s@]+.[^\s@]{2,}$/;
-            const phone = /^8d{10}$/;
+            const phone = /^(8|\+7)\d{10}$/;
 
             const emailtest = email.test(phoneOrEmail);
             const phonetest = phone.test(phoneOrEmail);
@@ -77,8 +77,8 @@ Form.addEventListener("submit", (event) => {
         if (loginOrEmailOrPhone !== undefined) {
             
             const email = /^[^\s@]+@[^\s@]+.[^\s@]{2,}$/;
-            const phone = /^8d{10}$/;
-            const login = /^[^\s@]{4,}$/;
+            const phone = /^(8|\+7)\d{10}$/;
+            const login = /^(?!\d+$)[^\s@]{4,}$/;
 
             const emailtest = email.test(loginOrEmailOrPhone);
             const phonetest = phone.test(loginOrEmailOrPhone);
