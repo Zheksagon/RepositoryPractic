@@ -20,17 +20,16 @@
                 <div class="input-boxes">
                     <div class="input">
                         <p>Логин / Почта / Телефон</p>
-                        <input asp-for="LoginEmailPhoneNumber" type="text" id="loginOrEmailOrPhone">
+                        <input asp-for="LoginEmailPhoneNumber" type="text" id="loginOrEmailOrPhone" required>
                     </div>
                     
                     <div class="input">
                         <p>Пароль</p>
                         <div class="password-wrapper">
-                            <input asp-for="Password" type="password" name="Password" id="password">
+                            <input asp-for="Password" type="password" name="Password" id="password" required>
                             <button type="button" class="toggle-password" data-target="password">♦</button>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="confirm-buttons">

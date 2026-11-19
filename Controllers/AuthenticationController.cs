@@ -115,6 +115,19 @@ namespace Zadacha1zhd.Controllers
             return View("~/Views/WindowsAuthentication/WindowsAuthorization/ManagerAuthorization/main.cshtml");
         }
 
+        [HttpPost]
+        public IActionResult ManagerAuthorization(AuthenticationModel model)
+        {
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            Console.WriteLine($"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}");
+            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+            return Content
+            (
+                $"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}"
+            );
+        }
+
         [HttpGet]
         public IActionResult AdministratorAuthorization()
         {
