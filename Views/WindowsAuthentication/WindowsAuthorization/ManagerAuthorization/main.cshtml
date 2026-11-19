@@ -1,0 +1,62 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Zadacha1zhd.Models.AuthenticationModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Окно авторизации менеджера</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/Authentication/authentication.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="heading-text">АВТОРИЗАЦИЯ (Менеджер)</div>
+
+        <div id="error" style="color: #ff6b6b; text-align: center; margin-top: 5px;"></div>
+
+        <form id="form" asp-controller="Authentication" asp-action="ManagerAuthorization" method="post">
+            <div class="input-boxes">
+                <div class="input">
+                    <p>Логин / Почта / Телефон</p>
+                    <input asp-for="LoginEmailPhoneNumber" type="text" id="loginOrEmailOrPhone" required>
+                </div>
+                
+                <div class="input">
+                    <p>Пароль</p>
+                    <div class="password-wrapper">
+                        <input asp-for="Password" type="password" id="password" required>
+                        <button type="button" class="toggle-password" data-target="password">♦</button>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <p>PIN-код</p>
+                    <input asp-for="PINcode"
+                           type="text"
+                           inputmode="numeric"
+                           maxlength="4"
+                           autocomplete="one-time-code"
+                           id="pin"
+                           required>
+                </div>
+            </div>
+
+            <div class="confirm-buttons">
+                <button class="regButton" type="submit">Авторизоваться</button>
+
+                @* Ссылки на другие страницы регистрации и авторизации (пока что костыльные)*@
+                <a asp-controller="Authentication" asp-action="Authentication">На главную (регистрация пользователя)</a>
+                <a asp-controller="Authentication" asp-action="ManagerRegistration">Зарегистрироваться за менеджера</a>
+                <a asp-controller="Authentication" asp-action="AdministratorRegistration">Зарегистрироваться за администратора</a>
+                <a asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт за пользователя</a>
+                <a asp-controller="Authentication" asp-action="AdministratorAuthorization">Войти в аккаунт за администратора</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="/js/Authentication/Authentication.js" asp-append-version="true"></script>
+</body>
+</html>
