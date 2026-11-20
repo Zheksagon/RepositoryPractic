@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../reset.css">
+    <link rel="stylesheet" href="RentWindow_style.css">
+    <title>Окно бронирования</title>
+</head>
+    <body>
+
+       <header>
+            <div class="top-bar">
+                <a href="empty"><img class="backButton" src="../Картинки/Кнопка назад.png" alt="кнопка-назад"></a>
+                <div class="windows-buttons">
+                    <a href="../Окно каталога товаров/Catalog.html"><img src="../Картинки/Каталог.png" alt="catalog-button"></a>
+                    <a href="../Личный кабинет клиента/Profile.html"><img class="profileButton" src="../Картинки/Профиль.png" alt="профиль"></a>
+                </div>
+            </div>
+       </header>
+       
+       <main>
+            <div class="product-layout">
+                <div class="product-left-col">
+
+                    <img class="product-img" src="../Картинки/Велосипед.png" alt="картинка-товара">
+                        
+                    <div class="product_rent_days-items">
+                        <p class="rent_days-label">Выберите срок аренды:</p>
+                        <div class="rent-days">
+                            <p class="first_rent_day">
+                                <span class="first_rent_day-label">ОТ</span>
+                                <span><input class="first_rent_day-value" type="date" name="первая-дата" id="первая-дата"></span>
+                            </p>
+                            <p class="second_rent_day">
+                                <span class="second_rent_day-label">ДО</span>
+                                <span><input class="second_rent_day-value" type="date" name="вторая-дата" id="вторая-дата"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="product_price-items">
+                        <div class="product-price">
+                            <p class="product-rent-price">
+                                <span class="price-label">Цена аренды в день:</span>
+                                <span class="price-value"><span id="price-per-day">500</span> ₽</span>
+                            </p>
+                            <p class="rent-days-amount">
+                                <span class="price-label">Количество дней:</span>
+                                <span class="price-value"><span id="total-dayst">2</span></span>
+                            </p>
+                            <p class="product-deposit">
+                                <span class="price-label">Залог:</span>
+                                <span class="price-value"><span id="deposit-amount">3000</span> ₽</span>
+                            </p>
+                        </div>
+                    
+                        <p class="total-rent-sum">
+                            <span class="total-price-label">Общая цена аренды:</span>
+                            <span class="total-price-value"><span id="total-sum">4000</span> ₽</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="product-right-col">
+                    <div class="product-desc">Жёлтый горный велосипед — свобода движения и стиль.
+
+                    Этот горный велосипед создан для тех, кто не боится дорог без асфальта. Лёгкая алюминиевая рама, 21 скорость и дисковые тормоза делают его надёжным спутником как в городе, так и на пересечённой местности. Яркий жёлтый цвет не только поднимает настроение, но и делает вас заметным на дороге.
+
+                    Особенности:
+
+                    Алюминиевая рама — лёгкая и прочная,
+
+                    21 скорость — для любого рельефа,
+
+                    Дисковые тормоза — уверенное торможение в любую погоду,
+
+                    Амортизационная вилка — сглаживает неровности,
+
+                    Колёса 27.5" — баланс между накатом и манёвренностью,
+
+                    Подходит для города, парков, лесных троп и лёгкого бездорожья. Собран и настроен — можно садиться и ехать.
+                    </div>
+                    <div class="product-desc-bottom-decoration"></div>
+                </div>
+            </div>
+       </main>
+
+       <footer>
+            <div class="bottom-bar">
+                <button class="confirm_rent-button">Забронировать</button>
+                <button class="cancel_rent-button">Отменить бронирование</button>
+            </div>
+       </footer>
+
+    </body>
+</html>

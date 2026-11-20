@@ -28,10 +28,7 @@ namespace Zadacha1zhd.Controllers
                 return View(MainWindowReg, model);
             }
 
-            return Content
-            (
-                $"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}"
-            );
+            return RedirectToAction("ProductCatalog", "RentProductCatalog");
         }
 
         [HttpGet]
@@ -56,10 +53,7 @@ namespace Zadacha1zhd.Controllers
                 return View(ManagerReg, model);
             }
 
-            return Content
-            (
-                $"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}, пинкод {model.PINcode}"
-            );
+            return RedirectToAction("ProductCatalog", "RentProductCatalog");
         }
 
         [HttpGet]
@@ -68,7 +62,7 @@ namespace Zadacha1zhd.Controllers
             return View("~/Views/WindowsAuthentication/WindowsRegistration/adminreg.cshtml");
         }
 
-                [HttpPost]
+        [HttpPost]
         public IActionResult AdministratorRegistration(AuthenticationModel model, string passwordRepeat)
         {
             string AdminReg = "~/Views/WindowsAuthentication/WindowsRegistration/adminreg.cshtml";
@@ -84,10 +78,7 @@ namespace Zadacha1zhd.Controllers
                 return View(AdminReg, model);
             }
 
-            return Content
-            (
-                $"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}, пинкод {model.PINcode}"
-            );
+            return RedirectToAction("ProductCatalog", "RentProductCatalog");
         }
 
         [HttpGet]
@@ -103,10 +94,7 @@ namespace Zadacha1zhd.Controllers
             Console.WriteLine($"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}");
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
-            return Content
-            (
-                $"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}"
-            );
+            return RedirectToAction("ProductCatalog", "RentProductCatalog");
         }
 
         [HttpGet]
@@ -122,10 +110,7 @@ namespace Zadacha1zhd.Controllers
             Console.WriteLine($"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}");
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
-            return Content
-            (
-                $"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}"
-            );
+            return RedirectToAction("ProductCatalog", "RentProductCatalog");
         }
 
         [HttpGet]
@@ -141,10 +126,7 @@ namespace Zadacha1zhd.Controllers
             Console.WriteLine($"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}");
             Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
-            return Content
-            (
-                $"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}"
-            );
+            return RedirectToAction("ProductCatalog", "RentProductCatalog");
         }
     }
 }
