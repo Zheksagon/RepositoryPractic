@@ -11,5 +11,11 @@ namespace Zadacha1zhd.Controllers
         {
             return View("~/Views/WindowProductCatalog/catalog.cshtml");
         }
+
+        [HttpGet]
+        public IActionResult ProductRent()
+        {
+            return View("~/Views/RentWindow/rentwindow.cshtml");
+        }
     }
 }
