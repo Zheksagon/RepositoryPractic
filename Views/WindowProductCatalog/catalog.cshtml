@@ -1,16 +1,15 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Zadacha1zhd.Models.RentProductModel
 
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../reset.css">
-    <link rel="stylesheet" href="Catalog_style.css">
-    <title>Окно каталога товаров</title>
-</head>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/catalog.css">
+        <title>Окно каталога товаров</title>
+    </head>
     <body>
 
         <header>
@@ -18,13 +17,13 @@
                 <input class="searchBar" type="search" name="searchBar" id="searchBar">
                 <button class="searchButton">Найти</button>
             </div>
-                <a class="profileIcon" href="../Личный кабинет клиента/Profile.html"><img src="../Картинки/Профиль.png" alt="profileIcon"></a> 
+                <a class="profileIcon" href="../Личный кабинет клиента/Profile.html"><img src="/Images/Профиль.png" alt="profileIcon"></a> 
         </header>
 
         <main class="container">
 
             <a href="../Окно бронирования/RentWindow.html" class="product-card">
-                <img class="card-img" src="../Картинки/Велосипед.png" alt="Карта товара">
+                <img class="card-img" src="/Images/Велосипед.png" alt="Карта товара">
                 <h3 class="card-desc"><span id="description">Велосипед горный</span></h3>
                 <span class="card-price" id="price">От 2000 рублей</span>
             </a>
