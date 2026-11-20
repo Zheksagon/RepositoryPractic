@@ -12,7 +12,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     color: white;
     font-family: Arial;
 }
@@ -34,10 +33,9 @@ body::before {
 .container {
     display: flex;
     flex-direction: column;
-    width: min(450px, 90%);
-}
-form{
-    background-color: var(--theme-darkergray);
+    width: 100%;
+    max-width: 500px;
+    padding: 0 15px;
 }
 .heading-text {
     text-align: center;
@@ -48,6 +46,7 @@ form{
 }
 .input-boxes {
     padding: 15px;
+    background-color: var(--theme-darkergray);
 }
 
 input {
@@ -61,31 +60,40 @@ input {
     padding-bottom: 15px;
 }
 
-.confirm-buttons {
+.button-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
     text-align: center;
     align-items: center;
     justify-content: center;
-    background-color: var(--theme-darkgray);
-    padding: 15px;
 }
 .window-changer{
     padding: 5px;
     font-size: 18px;
-    background-color: #d72323;
+    width: 35%;
 }
 
-.confirm-buttons a {
+.button-container a{
     color: white;
 }
 
-.confirm-buttons a:hover {
+.button-container a:hover {
     opacity: 0.85;
 }
+.main-buttons{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--theme-darkgray);
+    padding: 15px;
+    width: 100%;
+}
 
-.regButton {
+.confirm-button {
     background-color: var(--theme-white);
     color: black;
     padding: 10px;
@@ -93,7 +101,7 @@ input {
     font-size: 25px;
     width: 100%;
 }
-.regButton:hover {
+.confirm-button:hover {
     opacity: 0.85;
 }
 input:hover {
@@ -118,8 +126,9 @@ p {
 
 .toggle-password {
     position: absolute;
-    right: 12px;
-    width: 12px;
+    align-items: center;
+    right: 1px;
+    width: 20px;
     font-size: 16px;
     color: black;
 }
@@ -141,9 +150,8 @@ p {
 
 .error-message{
     background-color: var(--theme-darkergray);
+    display: none;
     color: #f05454; 
     text-align: center; 
     padding: 10px;
-
 }
-
