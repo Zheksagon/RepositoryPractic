@@ -34,7 +34,7 @@ body::before {
 .container {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: min(450px, 90%);
 }
 form{
     background-color: var(--theme-darkergray);

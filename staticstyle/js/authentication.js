@@ -70,7 +70,7 @@ Form.addEventListener("submit", (event) => {
             const phonetest = phone.test(phoneOrEmail);
             
             if (!emailtest && !phonetest) {
-                throw new Error("Напишите почту с символом @ или номер телефона, который начинается с 8!");
+                throw new Error("Напишите почту с символом @ или номер телефона, который начинается с 8 или +7!");
             }
         }
 
@@ -85,7 +85,7 @@ Form.addEventListener("submit", (event) => {
             const logintest = login.test(loginOrEmailOrPhone);
             
             if (!emailtest && !phonetest && !logintest) {
-                throw new Error("Напишите почту с символом @ или номер телефона, который начинается с 8 или логин, который больше, чем 3 символа!");
+                throw new Error("Напишите почту с символом @ или номер телефона, который начинается с 8 - +7 или логин, который больше, чем 3 символа!");
             }
         }
 
