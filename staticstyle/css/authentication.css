@@ -150,6 +150,7 @@ p {
 
 .error-message{
     background-color: var(--theme-darkergray);
+    display: none;
     color: #f05454; 
     text-align: center; 
     padding: 10px;
