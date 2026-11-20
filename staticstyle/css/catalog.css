@@ -49,11 +49,11 @@ header{
     box-sizing: border-box;
 }
 
-.searchBarItems{
+.search-bar-items{
     display: flex;
 }
 
-.searchBar{
+.search-bar{
     width: 400px;
     max-width: 100%;
     padding: 10px;
@@ -61,22 +61,26 @@ header{
     background-color: var(--theme-white);
     z-index: 10;
 }
+.search-bar::placeholder{
+    color: #666666;
+    opacity: 1;
+}
 
-.searchButton{
+.search-button{
     background-color: #a81515;
     padding: 10px;
     white-space: nowrap;
 }
 
-.searchBar:hover{
+.search-bar:hover{
     opacity: 0.95;
 }
 
-.searchButton:hover{
+.search-button:hover{
     opacity: 0.95;
 }
 
-.profileIcon img{
+.profile-icon img{
     width: 45px;
     height: auto;
     display: block;
@@ -95,12 +99,9 @@ header{
 
 .product-card{
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    padding: 5px;
-    gap: 10px;
-    flex-direction: column;
-    background-color: var(--theme-darkergray);
     color: white;
     overflow: hidden;
 }
@@ -110,23 +111,28 @@ header{
 }
 .card-price{
     margin-top: auto;
+    background-color: var(--theme-darkgray);
+    padding: 5px;
 }
-
-.product-card .card-desc{
-    line-height: 1.3;
+.card-desc{
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     overflow-wrap: anywhere;
+    background-color: var(--theme-darkergray);
+    border-bottom: 2px solid var(--theme-red);
+    padding: 5px;
+    font-weight: bold;
 }
-
-.product-card .card-img{
+.card-img{
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;             /* квадратная картинка */
     object-fit: cover;               /* заполнить без искажений */
     display: block;                  /* убрать щель под картинкой */
+    padding: 8px;
+    background-color: white;
 }
 
