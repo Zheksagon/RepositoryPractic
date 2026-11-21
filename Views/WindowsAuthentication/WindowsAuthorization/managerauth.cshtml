@@ -23,7 +23,7 @@
                         <p>Логин / Почта / Телефон</p>
                         <input asp-for="LoginEmailPhoneNumber" type="text" id="loginOrEmailOrPhone" required>
                     </div>
-                    
+
                     <div class="input">
                         <p>Пароль</p>
                         <div class="password-wrapper">
@@ -50,15 +50,15 @@
                         <button class="confirm-button" type="submit">Авторизоваться</button>
                         <a class="window-changer" asp-controller="Authentication" asp-action="UserRegistration">Создать аккаунт</a>
                     </div>
-                    
+
                     <div class="links-container">
-                        <a asp-controller="Authentication" asp-action="UserAuthorization">Пользователь</a>
+                        <a asp-controller="Authentication" asp-action="UserAuthorization">Клиент</a>
                         <a asp-controller="Authentication" asp-action="ManagerAuthorization">Менеджер</a>
                         <a asp-controller="Authentication" asp-action="AdministratorAuthorization">Администратор</a>
                     </div>
 
                 </div>
-                
+
             </form>
         </div>
 
