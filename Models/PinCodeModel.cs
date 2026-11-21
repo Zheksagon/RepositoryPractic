@@ -12,7 +12,7 @@ namespace Zadacha1zhd.Models
         public string UserId { get; set; } = string.Empty;
 
         [ForeignKey("UserId")]
-        public AuthenticationModel? User { get; set; } 
+        public AuthenticationModel? User { get; set; }
 
         [Required]
         [MaxLength(4)]

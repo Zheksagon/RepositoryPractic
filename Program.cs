@@ -32,7 +32,7 @@ namespace Zadacha1zhd
             app.MapControllerRoute
             (
                 name: "default",
-                pattern: "{controller=Authentication}/{action=UserRegistration}/{id?}"
+                pattern: "{controller=RentProductCatalog}/{action=ProductCatalog}/{id?}"
             );
 
             app.Run();

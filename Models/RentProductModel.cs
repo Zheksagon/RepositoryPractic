@@ -9,10 +9,15 @@ namespace Zadacha1zhd.Models
 
         public string Description { get; set; } = string.Empty;
 
-        public string PricePerDay { get; set; } = string.Empty;
+        public decimal PricePerDay { get; set; }
 
-        public string Deposit { get; set; } = string.Empty;
+        public decimal Deposit { get; set; }
 
         public string URLPicture { get; set; } = string.Empty;
+
+        public int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public CategoryModel? Category { get; set; }
     }
 }
