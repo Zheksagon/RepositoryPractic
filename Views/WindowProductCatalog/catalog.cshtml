@@ -13,11 +13,32 @@
     <body>
 
         <header>
-            <div class="search-bar-items">
-                <input class="search-bar" type="search" name="searchBar" id="searchBar" placeholder="Введите название товара...">
-                <button class="search-button">Найти</button>
-            </div>
-                <a class="profile-icon" asp-controller="Profile" asp-action="Profile"><img src="/Images/Профиль.png" alt="profileIcon"></a> 
+            <form class="search-bar-items" asp-controller="RentProductCatalog" asp-action="ProductCatalog" method="get">
+                <select class="category-select" name="categoryId" onchange="this.form.submit()">
+                    <option value="">Все категории</option>
+                    @if (ViewBag.Categories != null)
+                    {
+                        foreach (var category in ViewBag.Categories)
+                        {
+                            if (ViewBag.SelectedCategoryId == category.Id)
+                            {
+                                <option value="@category.Id" selected>@category.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    }
+                </select>
+
+                <input class="search-bar" type="search" name="searchBar" id="searchBar" value="@ViewBag.SearchQuery" placeholder="Введите название товара...">
+                <button type="submit" class="search-button">Найти</button>
+            </form>
+
+            <a class="profile-icon" asp-controller="Profile" asp-action="Profile">
+                <img src="/Images/Профиль.png" alt="profileIcon">
+            </a>
         </header>
 
         <main class="container">

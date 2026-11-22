@@ -15,11 +15,26 @@ namespace Zadacha1zhd.Controllers
             BDcontext = context;
         }
         [HttpGet]
-        public async Task<IActionResult> ProductCatalog()
+        public async Task<IActionResult> ProductCatalog(string searchBar, int? categoryId)
         {
-            var query = BDcontext.Products.AsQueryable();
+            ViewBag.Categories = await BDcontext.Categories.ToListAsync();
+            ViewBag.SearchQuery = searchBar;
+            ViewBag.SelectedCategoryId = categoryId;
+
+            var query = BDcontext.Products.Include(product => product.Category).AsQueryable();
+
+            if (categoryId.HasValue && categoryId.Value > 0)
+            {
+                query = query.Where(product => product.CategoryId == categoryId.Value);
+            }
 
             var products = await query.ToListAsync();
+
+            if (!string.IsNullOrWhiteSpace(searchBar))
+            {
+                string search = searchBar.Trim();
+                products = products.Where(products => products.Title.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
             return View("~/Views/WindowProductCatalog/catalog.cshtml", products);
         }
 
