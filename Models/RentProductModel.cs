@@ -5,6 +5,9 @@ namespace Zadacha1zhd.Models
 {
     public class RentProductModel
     {
+        [Key]
+        public int Id { get; set; }
+        
         public string Title { get; set; } = string.Empty;
 
         public string Description { get; set; } = string.Empty;
@@ -14,6 +17,8 @@ namespace Zadacha1zhd.Models
         public decimal Deposit { get; set; }
 
         public string URLImage { get; set; } = string.Empty;
+
+        public int TotalQuantity { get; set; } = 1;
 
         public int CategoryId { get; set; }
 
