@@ -18,6 +18,10 @@ if (pinInput !== null) {
 const ErrorMessage = document.getElementById("error");
 const Form = document.getElementById("form");
 
+const serverError = document.body.dataset.serverError;
+if (serverError && ErrorMessage) {
+    ErrorMessage.textContent = `Ошибка: ${serverError}`;
+}
 Form.addEventListener("submit", (event) => {
     try {
         ErrorMessage.textContent = "";

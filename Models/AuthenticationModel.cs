@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace Zadacha1zhd.Models
 {
@@ -12,14 +13,22 @@ namespace Zadacha1zhd.Models
 
         public string Login { get; set; } = string.Empty;
 
+        public int Role { get; set; } = 0;
+
+        [NotMapped]
         public string LoginEmailPhoneNumber { get; set; } = string.Empty;
 
+        [NotMapped]
         public string PhoneNumberEmail { get; set; } = string.Empty;
 
+        [NotMapped]
         public string Password { get; set; } = string.Empty;
 
+        [NotMapped]
         public int PINcode { get; set; }
 
-        public int Role { get; set; } = 0;
+        public PinCodeModel? PinCodeRecord { get; set; }
+
+        public List<BookingModel> Bookings { get; set; } = new();
     }
 }

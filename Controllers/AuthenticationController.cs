@@ -1,11 +1,29 @@
-using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Zadacha1zhd.DataBase;
 using Zadacha1zhd.Models;
 
 namespace Zadacha1zhd.Controllers
 {
     public class AuthenticationController : Controller
     {
+        private readonly UserManager<AuthenticationModel> BDuserManager;
+        private readonly SignInManager<AuthenticationModel> BDsignInManager;
+        private readonly DataBaseContext BDcontext;
+
+        public AuthenticationController(
+            UserManager<AuthenticationModel> userManager,
+            SignInManager<AuthenticationModel> signInManager,
+            DataBaseContext context)
+        {
+            BDuserManager = userManager;
+            BDsignInManager = signInManager;
+            BDcontext = context;
+        }
+
         [HttpGet]
         public IActionResult UserRegistration()
         {
@@ -13,25 +31,30 @@ namespace Zadacha1zhd.Controllers
         }
 
         [HttpPost]
-        public IActionResult UserRegistration(AuthenticationModel model, string passwordRepeat)
+        public async Task<IActionResult> UserRegistration(AuthenticationModel model, string passwordRepeat)
         {
             string MainWindowReg = "~/Views/WindowsAuthentication/WindowsRegistration/userreg.cshtml";
 
             model.Role = 0;
-
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine($"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}");
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            model.UserName = model.Login;
+            placeEmailOrPhone(model);
 
             if (model.Password != passwordRepeat)
             {
+                ViewBag.ErrorMessage = "Пароли не совпадают";
                 return View(MainWindowReg, model);
             }
 
-            return Content
-            (
-                $"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}"
-            );
+            var result = await BDuserManager.CreateAsync(model, model.Password);
+
+            if (result.Succeeded)
+            {
+                await BDsignInManager.SignInAsync(model, isPersistent: false);
+                return RedirectToAction("ProductCatalog", "RentProductCatalog");
+            }
+
+            ViewBag.ErrorMessage = string.Join(" ", result.Errors.Select(e => e.Description));
+            return View(MainWindowReg, model);
         }
 
         [HttpGet]
@@ -41,25 +64,43 @@ namespace Zadacha1zhd.Controllers
         }
 
         [HttpPost]
-        public IActionResult ManagerRegistration(AuthenticationModel model, string passwordRepeat)
+        public async Task<IActionResult> ManagerRegistration(AuthenticationModel model, string passwordRepeat)
         {
             string ManagerReg = "~/Views/WindowsAuthentication/WindowsRegistration/managerreg.cshtml";
 
             model.Role = 1;
-
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine($"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}, пинкод {model.PINcode}");
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            model.UserName = model.Login;
+            placeEmailOrPhone(model);
 
             if (model.Password != passwordRepeat)
             {
+                ViewBag.ErrorMessage = "Пароли не совпадают";
                 return View(ManagerReg, model);
             }
 
-            return Content
-            (
-                $"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}, пинкод {model.PINcode}"
-            );
+            if (model.PINcode <= 0)
+            {
+                ViewBag.ErrorMessage = "Введите ПИН-код";
+                return View(ManagerReg, model);
+            }
+
+            var result = await BDuserManager.CreateAsync(model, model.Password);
+
+            if (result.Succeeded)
+            {
+                BDcontext.PinCodes.Add(new PinCodeModel
+                {
+                    PinCode = model.PINcode.ToString(),
+                    UserId = model.Id
+                });
+                await BDcontext.SaveChangesAsync();
+
+                await BDsignInManager.SignInAsync(model, isPersistent: false);
+                return RedirectToAction("ProductCatalog", "RentProductCatalog");
+            }
+
+            ViewBag.ErrorMessage = string.Join(" ", result.Errors.Select(e => e.Description));
+            return View(ManagerReg, model);
         }
 
         [HttpGet]
@@ -68,26 +109,44 @@ namespace Zadacha1zhd.Controllers
             return View("~/Views/WindowsAuthentication/WindowsRegistration/adminreg.cshtml");
         }
 
-                [HttpPost]
-        public IActionResult AdministratorRegistration(AuthenticationModel model, string passwordRepeat)
+        [HttpPost]
+        public async Task<IActionResult> AdministratorRegistration(AuthenticationModel model, string passwordRepeat)
         {
             string AdminReg = "~/Views/WindowsAuthentication/WindowsRegistration/adminreg.cshtml";
 
             model.Role = 2;
-
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine($"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}, пинкод {model.PINcode}");
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            model.UserName = model.Login;
+            placeEmailOrPhone(model);
 
             if (model.Password != passwordRepeat)
             {
+                ViewBag.ErrorMessage = "Пароли не совпадают";
                 return View(AdminReg, model);
             }
 
-            return Content
-            (
-                $"имя {model.FirstName}, фамилия {model.LastName}, отчество {model.Patronymic}, логин {model.Login}, почта или телефон {model.PhoneNumberEmail}, пароль {model.Password}, повтор пароля {passwordRepeat}, роль: {model.Role}, пинкод {model.PINcode}"
-            );
+            if (model.PINcode <= 0)
+            {
+                ViewBag.ErrorMessage = "Введите ПИН-код";
+                return View(AdminReg, model);
+            }
+
+            var result = await BDuserManager.CreateAsync(model, model.Password);
+
+            if (result.Succeeded)
+            {
+                BDcontext.PinCodes.Add(new PinCodeModel
+                {
+                    PinCode = model.PINcode.ToString(),
+                    UserId = model.Id
+                });
+                await BDcontext.SaveChangesAsync();
+
+                await BDsignInManager.SignInAsync(model, isPersistent: false);
+                return RedirectToAction("ProductCatalog", "RentProductCatalog");
+            }
+
+            ViewBag.ErrorMessage = string.Join(" ", result.Errors.Select(e => e.Description));
+            return View(AdminReg, model);
         }
 
         [HttpGet]
@@ -97,16 +156,26 @@ namespace Zadacha1zhd.Controllers
         }
 
         [HttpPost]
-        public IActionResult UserAuthorization(AuthenticationModel model)
+        public async Task<IActionResult> UserAuthorization(AuthenticationModel model)
         {
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine($"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}");
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            string MainUserAuth = "~/Views/WindowsAuthentication/WindowsAuthorization/userauth.cshtml";
 
-            return Content
-            (
-                $"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}"
-            );
+            var user = await findUserLoginOrPhoneNumberOrEmail(model.LoginEmailPhoneNumber);
+
+            if (user == null || user.Role != 0)
+            {
+                ViewBag.ErrorMessage = "Пользователь не найден";
+                return View(MainUserAuth, model);
+            }
+
+            var result = await BDsignInManager.PasswordSignInAsync(user, model.Password, isPersistent: false, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ProductCatalog", "RentProductCatalog");
+            }
+
+            ViewBag.ErrorMessage = "Неверный пароль";
+            return View(MainUserAuth, model);
         }
 
         [HttpGet]
@@ -116,16 +185,33 @@ namespace Zadacha1zhd.Controllers
         }
 
         [HttpPost]
-        public IActionResult ManagerAuthorization(AuthenticationModel model)
+        public async Task<IActionResult> ManagerAuthorization(AuthenticationModel model)
         {
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine($"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}");
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            string MainManagerAuth = "~/Views/WindowsAuthentication/WindowsAuthorization/managerauth.cshtml";
 
-            return Content
-            (
-                $"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}"
-            );
+            var user = await findUserLoginOrPhoneNumberOrEmail(model.LoginEmailPhoneNumber);
+
+            if (user == null || user.Role != 1)
+            {
+                ViewBag.ErrorMessage = "Менеджер не найден";
+                return View(MainManagerAuth, model);
+            }
+
+            var pin = await BDcontext.PinCodes.FirstOrDefaultAsync(p => p.UserId == user.Id && p.PinCode == model.PINcode.ToString());
+            if (pin == null)
+            {
+                ViewBag.ErrorMessage = "Неверный ПИН-код";
+                return View(MainManagerAuth, model);
+            }
+
+            var result = await BDsignInManager.PasswordSignInAsync(user, model.Password, isPersistent: false, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ProductCatalog", "RentProductCatalog");
+            }
+
+            ViewBag.ErrorMessage = "Неверный пароль";
+            return View(MainManagerAuth, model);
         }
 
         [HttpGet]
@@ -135,16 +221,59 @@ namespace Zadacha1zhd.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdministratorAuthorization(AuthenticationModel model)
+        public async Task<IActionResult> AdministratorAuthorization(AuthenticationModel model)
         {
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine($"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}");
-            Console.WriteLine("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            string MainAdminAuth = "~/Views/WindowsAuthentication/WindowsAuthorization/adminauth.cshtml";
 
-            return Content
-            (
-                $"логин или почта или телефон {model.LoginEmailPhoneNumber}, пароль {model.Password}, пинкод: {model.PINcode}"
-            );
+            var user = await findUserLoginOrPhoneNumberOrEmail(model.LoginEmailPhoneNumber);
+
+            if (user == null || user.Role != 2)
+            {
+                ViewBag.ErrorMessage = "Администратор не найден";
+                return View(MainAdminAuth, model);
+            }
+
+            var pin = await BDcontext.PinCodes.FirstOrDefaultAsync(p => p.UserId == user.Id && p.PinCode == model.PINcode.ToString());
+            if (pin == null)
+            {
+                ViewBag.ErrorMessage = "Неверный ПИН-код";
+                return View(MainAdminAuth, model);
+            }
+
+            var result = await BDsignInManager.PasswordSignInAsync(user, model.Password, isPersistent: false, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ProductCatalog", "RentProductCatalog");
+            }
+
+            ViewBag.ErrorMessage = "Неверный пароль";
+            return View(MainAdminAuth, model);
+        }
+
+        private void placeEmailOrPhone(AuthenticationModel model)
+        {
+            if (model.PhoneNumberEmail != null)
+            {
+                if (model.PhoneNumberEmail.Contains("@"))
+                {
+                    model.Email = model.PhoneNumberEmail;
+                }
+                else
+                {
+                    model.PhoneNumber = model.PhoneNumberEmail;
+                }
+            }
+        }
+        private async Task<AuthenticationModel?> findUserLoginOrPhoneNumberOrEmail(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+            return await BDcontext.Users.FirstOrDefaultAsync(user =>
+            user.Login == input ||
+            user.Email == input ||
+            user.PhoneNumber == input);
         }
     }
 }

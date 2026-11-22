@@ -10,10 +10,10 @@
         <link rel="stylesheet" href="/css/reset.css">
         <link rel="stylesheet" href="/css/authentication.css">
     </head>
-    <body>
+    <body data-server-error="@ViewBag.ErrorMessage">
         <div class="container">
             <div class="heading-text">РЕГИСТРАЦИЯ (Менеджер)</div>
-            
+
             <div class="error-message" id="error"></div>
 
             <form id="form" asp-controller="Authentication" asp-action="ManagerRegistration" method="post">
@@ -23,27 +23,27 @@
                         <p>Имя</p>
                         <input asp-for="FirstName" type="text" id="firstName" name="FirstName" required>
                     </div>
-                
+
                     <div class="input">
                         <p>Фамилия</p>
                         <input asp-for="LastName" type="text" id="lastName" name="LastName" required>
                     </div>
-                
+
                     <div class="input">
                         <p>Отчество</p>
                         <input asp-for="Patronymic" type="text" id="patronymic" name="Patronymic" required>
                     </div>
-                
+
                     <div class="input">
                         <p>Логин</p>
                         <input asp-for="Login" type="text" id="login" name="Login" required>
                     </div>
-                        
+
                     <div class="input">
                         <p>Почта / Телефон</p>
                         <input asp-for="PhoneNumberEmail" type="text" id="phoneOrEmail" required>
                     </div>
-                        
+
                     <div class="input">
                         <p>Пароль</p>
                         <div class="password-wrapper">
@@ -51,7 +51,7 @@
                             <button type="button" class="toggle-password" data-target="password">♦</button>
                         </div>
                     </div>
-                        
+
                     <div class="input">
                         <p>Повтор пароля</p>
                         <div class="password-wrapper">
@@ -71,20 +71,24 @@
                                 id="pin"
                                 required>
                     </div>
-                
+
                 </div>
 
-                <div class="confirm-buttons">
-                    <button class="regButton" type="submit">Зарегистрироваться</button>
+                <div class="button-container">
 
-                    <a class="window-changer" asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт</a>
+                    <div class="main-buttons">
+                        <button class="confirm-button" type="submit">Зарегистрироваться</button>
+                        <a class="window-changer" asp-controller="Authentication" asp-action="UserAuthorization">Войти в аккаунт</a>
+                    </div>
 
                     <div class="links-container">
-                        <a asp-controller="Authentication" asp-action="UserRegistration">Пользователь</a>
+                        <a asp-controller="Authentication" asp-action="UserRegistration">Клиент</a>
                         <a asp-controller="Authentication" asp-action="ManagerRegistration">Менеджер</a>
                         <a asp-controller="Authentication" asp-action="AdministratorRegistration">Администратор</a>
                     </div>
+
                 </div>
+
             </form>
         </div>
 
