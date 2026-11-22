@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Zadacha1zhd.DataBase;
 using Zadacha1zhd.Models;
-using System.Threading.Tasks;
 
 namespace Zadacha1zhd
 {
@@ -44,7 +42,7 @@ namespace Zadacha1zhd
             app.MapControllerRoute
             (
                 name: "default",
-                pattern: "{controller=Authentication}/{action=UserRegistration}/{id?}"
+                pattern: "{controller=RentProductCatalog}/{action=ProductCatalog}/{id?}"
             );
 
             using (var scope = app.Services.CreateScope())
