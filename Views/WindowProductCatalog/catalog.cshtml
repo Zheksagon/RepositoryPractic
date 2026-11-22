@@ -1,5 +1,5 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model Zadacha1zhd.Models.RentProductModel
+@model IEnumerable<Zadacha1zhd.Models.RentProductModel>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -21,12 +21,21 @@
         </header>
 
         <main class="container">
-
-            <a class="product-card" asp-controller="RentProductCatalog" asp-action="ProductRent">
-                <img class="card-img" src="/Images/Велосипед.png" alt="Велосипед горный">
-                <h3 class="card-desc">Велосипед горный</h3>
-                <p class="card-price">От 500 рублей / день</p>
-            </a>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var Product in Model)
+                {
+                    <a class="product-card" asp-controller="RentProductCatalog" asp-action="ProductRent" asp-route-id="@Product.Id">
+                        <img class="card-img" src="@Product.URLImage">
+                        <h3 class="card-desc">@Product.Title</h3>
+                        <p class="card-price">От @Product.PricePerDay.ToString("N0") рублей / день</p>
+                    </a>
+                }
+            }
+            else
+            {
+                <p>Товары не найдены</p>
+            }
 
         </main>
     </body>
