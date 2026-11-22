@@ -25,6 +25,15 @@ namespace Zadacha1zhd.Models
 
         public decimal TotalPrice { get; set; }
 
-        public string Status { get; set; } = "Ожидает подтверждения";
+        public string Status { get; set; } = "Ожидает подтверждения";   
+    }
+
+        public static class BookingStatus
+    {
+        public const string Pending = "Ожидает подтверждения";
+        public const string Confirmed = "Забронировано";
+        public const string Returned = "Возвращено";
+        public const string Cancelled = "Отменено";
+        public const string CancelledConfirmed = "Отменено (подтверждённое)";
     }
 }

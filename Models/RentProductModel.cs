@@ -13,7 +13,7 @@ namespace Zadacha1zhd.Models
 
         public decimal Deposit { get; set; }
 
-        public string URLPicture { get; set; } = string.Empty;
+        public string URLImage { get; set; } = string.Empty;
 
         public int CategoryId { get; set; }
 

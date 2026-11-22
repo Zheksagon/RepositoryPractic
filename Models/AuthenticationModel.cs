@@ -28,5 +28,7 @@ namespace Zadacha1zhd.Models
         public int PINcode { get; set; }
 
         public PinCodeModel? PinCodeRecord { get; set; }
+
+        public List<BookingModel> Bookings { get; set; } = new();
     }
 }
