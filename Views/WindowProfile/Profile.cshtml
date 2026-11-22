@@ -29,13 +29,29 @@
                     <div class="profile-bar-items">
                         <div class="profile-top-bar">
                             <p class="profile-login">Логин: <span id="login">@Model.Login</span></p>
-                            <button class="profile-exit-button">Выйти с аккаунта</button>
+                            <form asp-action="Logout" asp-controller="Profile" method="post">
+                                <button type="submit" class="profile-exit-button">Выйти с аккаунта</button>
+                            </form>
                         </div>
 
                         <div class="profile-bottom-bar">
                             <p class="profile-full-name">ФИО: <span id="full-name">@Model.LastName @Model.FirstName @Model.Patronymic</span></p>
+                            @if (Model.Email != null) 
+                            {
                             <p class="profile-email">Email: <span id="email">@Model.Email</span></p>
+                            }
+                            else
+                            {
+                            <p class="profile-email">Email: <span id="email">Не указан</span></p>
+                            }
+                            @if (Model.PhoneNumber != null) 
+                            {
                             <p class="profile-phone">Телефон: <span id="phone">@Model.PhoneNumber</span></p>
+                            }
+                            else
+                            {
+                            <p class="profile-phone">Телефон: <span id="phone">Не указан</span></p>    
+                            }
 
                         </div>
                     </div>
@@ -108,7 +124,8 @@
                                         </td>
                                         <td>@booking.StartRent.ToString("dd.MM.yyyy") - @booking.EndRent.ToString("dd.MM.yyyy")</td>
                                         <td>@booking.TotalPrice руб.</td>
-                                        @if (booking.Status == BookingStatus.CancelledConfirmed) {
+                                        @if (booking.Status == BookingStatus.CancelledConfirmed) 
+                                        {
                                         <td>Отменено</td>
                                         }
                                         else 
