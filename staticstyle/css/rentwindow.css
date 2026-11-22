@@ -75,7 +75,6 @@ main{
 }
 .product-desc {
     font-size: 22.5px;
-    text-align: justify;
     white-space: pre-line;
     background-color: var(--theme-white);
     color: black;

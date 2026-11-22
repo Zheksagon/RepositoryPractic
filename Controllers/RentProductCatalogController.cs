@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Zadacha1zhd.DataBase;
@@ -26,9 +24,53 @@ namespace Zadacha1zhd.Controllers
         }
 
         [HttpGet]
-        public IActionResult ProductRent()
+        public async Task<IActionResult> ProductRent(int id)
         {
-            return View("~/Views/RentWindow/rentwindow.cshtml");
+                var product = await BDcontext.Products
+                    .Include(p => p.Category)
+                    .FirstOrDefaultAsync(product => product.Id == id);
+
+            return View("~/Views/RentWindow/rentwindow.cshtml", product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BookingProduct(int productId, DateTime startRent, DateTime endRent)
+        {
+                var currentUserName = User.Identity?.Name;
+                if (string.IsNullOrEmpty(currentUserName))
+                {
+                    return RedirectToAction("UserAuthorization", "Authentication");
+                }
+
+                var user = await BDcontext.Users.FirstOrDefaultAsync(user => user.UserName == currentUserName);
+                var product = await BDcontext.Products.FirstOrDefaultAsync(product => product.Id == productId);
+
+                if (user == null || product == null)
+                {
+                    return RedirectToAction("ProductCatalog");
+                }
+
+                int days = (endRent.Date - startRent.Date).Days;
+                if (days < 1) 
+                {
+                    days = 1;
+                }
+                decimal totalPrice = (days * product.PricePerDay) + product.Deposit;
+
+                var newBooking = new BookingModel
+                {
+                    ClientId = user.Id,
+                    ProductId = product.Id,
+                    StartRent = startRent,
+                    EndRent = endRent,
+                    TotalPrice = totalPrice,
+                    Status = BookingStatus.Confirmed
+                };
+
+                BDcontext.Bookings.Add(newBooking);
+                await BDcontext.SaveChangesAsync();
+
+                return RedirectToAction("Profile", "Profile");
         }
     }
 }

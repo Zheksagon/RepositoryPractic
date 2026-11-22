@@ -28,7 +28,7 @@
 
                     <img class="product-img" src="@Model.URLImage" alt="картинка-товара">
 
-                    <form id="rentForm" asp-controller="RentProductCatalog" asp-action="ProductRent" method="post">
+                    <form id="rentForm" asp-controller="RentProductCatalog" asp-action="BookingProduct" method="post">
                         <input type="hidden" name="productId" value="@Model.Id"/>
                             <div class="product_rent_days-items">
                                 <p class="rent_days-label">Выберите срок аренды:</p>
